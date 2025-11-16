@@ -1,0 +1,100 @@
+https://chatgpt.com/c/6918da89-1140-8323-97ad-d2f7780eb5bf
+https://python-poetry.org/docs/#installing-with-the-official-installer
+
+
+# ---------------------------------------------------------------------------- #
+#                               1. Install Poetry                              #
+# ---------------------------------------------------------------------------- #
+Linux, macOS, Windows (WSL)
+            curl -sSL https://install.python-poetry.org | python3 -
+
+Windows (Powershell)
+            (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+
+# ---------------------------------------------------------------------------- #
+#                          2. Add Poetry to your PATH                          #
+# ---------------------------------------------------------------------------- #
+The installer creates a poetry wrapper in a well-known, platform-specific directory:
+            $HOME/.local/bin on Unix.
+            %APPDATA%\Python\Scripts on Windows.
+            $POETRY_HOME/bin if $POETRY_HOME is set.
+
+If this directory is not present in your $PATH, you can add it in order to invoke Poetry as poetry.
+Alternatively, the full path to the poetry binary can always be used:
+            ~/Library/Application Support/pypoetry/venv/bin/poetry on macOS.
+            ~/.local/share/pypoetry/venv/bin/poetry on Linux/Unix.
+            %APPDATA%\pypoetry\venv\Scripts\poetry on Windows.
+            $POETRY_HOME/venv/bin/poetry if $POETRY_HOME is set.
+
+# ---------------------------------------------------------------------------- #
+#                                 3. Use Poetry                                #
+# ---------------------------------------------------------------------------- #
+Once Poetry is installed and in your $PATH, you can execute the following:
+            poetry --version
+            poetry self update
+
+# ---------------------------------------------------------------------------- #
+#                  4. Initialize Poetry in Your Django Project                 #
+# ---------------------------------------------------------------------------- #
+Go to your project folder:
+            poetry init
+Only letters, numbers, underscores, hyphens, and dots allowed. No spaces.
+            name = "New folder" -> name = "new_folder"
+
+This creates:
+            pyproject.toml
+
+# ---------------------------------------------------------------------------- #
+#                5. Add Django & Required Packages Using Poetry                #
+# ---------------------------------------------------------------------------- #
+Main Django dependencies:
+            poetry add django djangorestframework
+
+# ---------------------------------------------------------------------------- #
+#            6. Option 1 — Recommended (Use Poetry 2.x new command)            #
+# ---------------------------------------------------------------------------- #
+Activate the virtual environment with: 
+        poetry env activate
+This will output something like:
+        Using virtualenv: C:\Users\Hamza Iqbal\AppData\Local\pypoetry\venvs\myproject-xyz-SCRIPTS\python.exe
+
+To activate it manually:
+            C:\Users\Hamza Iqbal\AppData\Local\pypoetry\venvs\myproject-xyz-SCRIPTS\activate
+After activation, you can use:
+            python manage.py runserver
+
+# ---------------------------------------------------------------------------- #
+#             7. Option 2 — Re-enable poetry shell (install plugin)            #
+# ---------------------------------------------------------------------------- #
+If you prefer the old behavior:
+            poetry self add poetry-plugin-shell
+Then you can run:
+            poetry shell
+
+# ---------------------------------------------------------------------------- #
+#               8. Check Which Virtual Environment Poetry Created              #
+# ---------------------------------------------------------------------------- #
+            poetry env info
+Create venv:
+            poetry env use python
+Activate:
+            poetry env activate
+
+# ---------------------------------------------------------------------------- #
+#                  9. Activate the Poetry Virtual Environment                  #
+# ---------------------------------------------------------------------------- #
+Poetry automatically creates a venv:
+        poetry shell
+
+# ---------------------------------------------------------------------------- #
+#                      10. Run Django Commands with Poetry                     #
+# ---------------------------------------------------------------------------- #
+Instead of:
+            python manage.py runserver
+Use:
+            poetry run python manage.py runserver
+
+Lock Dependencies:
+        poetry lock
+This generates:
+        poetry.lock
